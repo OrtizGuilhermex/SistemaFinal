@@ -75,6 +75,7 @@ public class SistemaTeste {
 
             
           //════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+         
             // MENU
             do {
                 System.out.println("\n════════════════════════════════════════");
@@ -92,29 +93,38 @@ public class SistemaTeste {
                 sc.nextLine();
 
               //════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+            
                 // 1 CADASTRAR
                 if (menu == 1) {
-                    if (i >= tituloDaOrientacao.length) {
-                        String[] novoTitulo = new String[tituloDaOrientacao.length + 1];
-                        String[] novoTipo = new String[tipoDaOrientacao.length + 1];
-                        for (int j = 0; j < tituloDaOrientacao.length; j++) {
-                            novoTitulo[j] = tituloDaOrientacao[j];
-                            novoTipo[j] = tipoDaOrientacao[j];
-                        }
-                        tituloDaOrientacao = novoTitulo;
-                        tipoDaOrientacao = novoTipo;
-                    }
+                	if (i >= tituloDaOrientacao.length) {
+                	    // Aumenta o tamanho dos arrays (título, tipo e descrição)
+                	    String[] novoTitulo = new String[tituloDaOrientacao.length + 1];
+                	    String[] novoTipo = new String[tipoDaOrientacao.length + 1];
+                	    String[] novaDescricao = new String[descricaoDaOrientacao.length + 1];
+                	    
+                	    // Copia os valores antigos para os novos arrays
+                	    for (int j = 0; j < tituloDaOrientacao.length; j++) {
+                	        novoTitulo[j] = tituloDaOrientacao[j];
+                	        novoTipo[j] = tipoDaOrientacao[j];
+                	        novaDescricao[j] = descricaoDaOrientacao[j];
+                	    }
 
-                    System.out.println("\n\nEscreva o título da orientação: ");
-                    tituloDaOrientacao[i] = sc.nextLine();
-                    System.out.println("\nEscreva o Tipo da orientação: [Manual de Operação, Procedimento de Segurança, Manutenção e Reparos, Testes e Diagnóstico ou Manual de Conduta e Operações Setoriais]: 	");
-                    tipoDaOrientacao[i] = sc.nextLine();
-                    System.out.println("\nEscreva a descrição da orientação: ");
-                    descricaoDaOrientacao[i] = sc.nextLine();
-                    i++;
+                	    // Atualiza os arrays com o novo tamanho
+                	    tituloDaOrientacao = novoTitulo;
+                	    tipoDaOrientacao = novoTipo;
+                	    descricaoDaOrientacao = novaDescricao;
+                	}
 
+                	System.out.println("\n\nEscreva o título da orientação: ");
+                	tituloDaOrientacao[i] = sc.nextLine();
+                	System.out.println("\nEscreva o Tipo da orientação: [Manual de Operação, Procedimento de Segurança, Manutenção e Reparos, Testes e Diagnóstico ou Manual de Conduta e Operações Setoriais]: 	");
+                	tipoDaOrientacao[i] = sc.nextLine();
+                	System.out.println("\nEscreva a descrição da orientação: ");
+                	descricaoDaOrientacao[i] = sc.nextLine();
+                	i++;  // Incrementa o índice após adicionar
                //════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-                // 2 PESQUISAR
+                
+                	// 2 PESQUISAR
                 } else if (menu == 2) {
                     System.out.println("\nTipos de Orientações disponíveis...\n");
                     for (int d = 0; d < i; d++) {
@@ -155,35 +165,17 @@ public class SistemaTeste {
                         if (normalizar(tituloSelecionado).equals(normalizar(tituloDaOrientacao[l]))) {
                             tituloEncontrado = true;
 
-                            String tipoSelecionado = normalizar(tipoDaOrientacao[l]);
+                            // Exibe a descrição cadastrada
+                            String descricaoExibida = descricaoDaOrientacao[l] != null && !descricaoDaOrientacao[l].isEmpty()
+                                                       ? descricaoDaOrientacao[l]  // Exibe a descrição cadastrada
+                                                       : "Descrição não disponível.";  // Caso a descrição seja nula ou vazia
 
                             System.out.println("\n----------------------------------------");
-                            switch (tipoSelecionado) {
-                                case "manual de operacao":
-                                    System.out.println("📝 Descrição: Orientações detalhadas sobre o uso correto e eficiente dos equipamentos.");
-                                    System.out.println("📌 Exemplos: Manual de operação de motores, transformadores, geradores, etc.");
-                                    break;
-                                case "procedimento de seguranca":
-                                    System.out.println("🛡️ Descrição: Procedimentos detalhados para garantir a segurança durante a operação de equipamentos e instalações elétricas.");
-                                    System.out.println("📌 Exemplos: Procedimento de segurança para instalação elétrica, risco de choque elétrico, etc.");
-                                    break;
-                                case "manutencao e reparos":
-                                    System.out.println("🔧 Descrição: Orientações para a manutenção e reparos de equipamentos, sistemas e dispositivos.");
-                                    System.out.println("📌 Exemplos: Manutenção de motores elétricos, geradores de energia, etc.");
-                                    break;
-                                case "testes e diagnostico":
-                                    System.out.println("🧪 Descrição: Procedimentos para testar e diagnosticar problemas em equipamentos e sistemas.");
-                                    System.out.println("📌 Exemplos: Teste de diagnóstico de transformadores, automação, etc.");
-                                    break;
-                                case "manual de conduta e operacoes setoriais":
-                                    System.out.println("📘 Descrição: Normas e orientações para a conduta dentro de setores específicos e suas operações.");
-                                    System.out.println("📌 Exemplos: Manual de conduta no setor de montagem, etc.");
-                                    break;
-                                default:
-                                    System.out.println("❓ Descrição: Descrição não disponível.");
-                            }
-
+                            System.out.println("🔖 " + tituloDaOrientacao[l]);
+                            System.out.println("📂 Tipo: " + tipoDaOrientacao[l]);
+                            System.out.println("📝 Descrição: " + descricaoExibida);
                             System.out.println("----------------------------------------");
+
                             break;
                         }
                     }
@@ -192,9 +184,11 @@ public class SistemaTeste {
                         System.out.println("\n❌ Título não encontrado! Você pode tentar novamente.");
                         continue;
                     }
+                
 
                 //════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
-                // 3 EDITAR
+               
+                    // 3 EDITAR
                 } else if (menu == 3) {
                     System.out.println("\nTipos de Orientações disponíveis...\n");
                     for (int z = 0; z < i; z++) {
@@ -266,41 +260,49 @@ public class SistemaTeste {
               
                     // 5 EXIBIR
                 } else if (menu == 5) {
-                    System.out.println("\n\n════════════════════════════════════════");
-                    System.out.println("     📚 ORIENTAÇÕES CADASTRADAS         ");
-                    System.out.println("════════════════════════════════════════");
+                	// No bloco de código do menu 5 (Exibir), exibir a descrição personalizada e a descrição padrão.
+                	System.out.println("\n\n════════════════════════════════════════");
+                	System.out.println("     📚 ORIENTAÇÕES CADASTRADAS         ");
+                	System.out.println("════════════════════════════════════════");
 
-                    for (int d = 0; d < i; d++) {
-                        System.out.println("\n🔖 Título da Orientação: " + tituloDaOrientacao[d]);
-                        System.out.println("📂 Tipo da Orientação: " + tipoDaOrientacao[d]);
+                	for (int d = 0; d < i; d++) {
+                	    System.out.println("\n🔖 Título da Orientação: " + tituloDaOrientacao[d]);
+                	    System.out.println("📂 Tipo da Orientação: " + tipoDaOrientacao[d]);
 
-                        switch (tipoDaOrientacao[d].toLowerCase()) {
-                            case "manual de operação":
-                                System.out.println("📝 Descrição: Orientações detalhadas sobre o uso correto e eficiente dos equipamentos.");
-                                System.out.println("📌 Exemplos: Manual de operação de motores, transformadores, geradores, etc.");
-                                break;
-                            case "procedimento de segurança":
-                                System.out.println("🛡️ Descrição: Procedimentos detalhados para garantir a segurança durante a operação de equipamentos e instalações elétricas.");
-                                System.out.println("📌 Exemplos: Procedimento de segurança para instalação elétrica, risco de choque elétrico, etc.");
-                                break;
-                            case "manutenção e reparos":
-                                System.out.println("🔧 Descrição: Orientações para a manutenção e reparos de equipamentos, sistemas e dispositivos.");
-                                System.out.println("📌 Exemplos: Manutenção de motores elétricos, geradores de energia, etc.");
-                                break;
-                            case "testes e diagnóstico":
-                                System.out.println("🧪 Descrição: Procedimentos para testar e diagnosticar problemas em equipamentos e sistemas.");
-                                System.out.println("📌 Exemplos: Teste de diagnóstico de transformadores, automação, etc.");
-                                break;
-                            case "manual de conduta e operações setoriais":
-                                System.out.println("📘 Descrição: Normas e orientações para a conduta dentro de setores específicos e suas operações.");
-                                System.out.println("📌 Exemplos: Manual de conduta no setor de montagem, etc.");
-                                break;
-                            default:
-                                System.out.println("❓ Descrição: Descrição não disponível.");
-                        }
+                	    // Verificar se a descrição personalizada foi cadastrada
+                	    String descricaoExibida = descricaoDaOrientacao[d] != null && !descricaoDaOrientacao[d].isEmpty()
+                	                               ? descricaoDaOrientacao[d]  // Exibe a descrição personalizada
+                	                               : "";  // Caso não tenha descrição personalizada, deixa em branco
 
-                        System.out.println("\n----------------------------------------");
-                    }
+                	    // Adicionar a descrição padrão se não houver uma descrição personalizada
+                	    if (descricaoExibida.isEmpty()) {
+                	        switch (tipoDaOrientacao[d].toLowerCase()) {
+                	            case "manual de operação":
+                	                descricaoExibida = "Orientações detalhadas sobre o uso correto e eficiente dos equipamentos. Exemplos: Manual de operação de motores, transformadores, geradores, etc.";
+                	                break;
+                	            case "procedimento de segurança":
+                	                descricaoExibida = "Procedimentos detalhados para garantir a segurança durante a operação de equipamentos e instalações elétricas. Exemplos: Procedimento de segurança para instalação elétrica, risco de choque elétrico, etc.";
+                	                break;
+                	            case "manutenção e reparos":
+                	                descricaoExibida = "Orientações para a manutenção e reparos de equipamentos, sistemas e dispositivos. Exemplos: Manutenção de motores elétricos, geradores de energia, etc.";
+                	                break;
+                	            case "testes e diagnóstico":
+                	                descricaoExibida = "Procedimentos para testar e diagnosticar problemas em equipamentos e sistemas. Exemplos: Teste de diagnóstico de transformadores, automação, etc.";
+                	                break;
+                	            case "manual de conduta e operações setoriais":
+                	                descricaoExibida = "Normas e orientações para a conduta dentro de setores específicos e suas operações. Exemplos: Manual de conduta no setor de montagem, etc.";
+                	                break;
+                	            default:
+                	                descricaoExibida = "Descrição padrão não disponível.";
+                	        }
+                	    }
+
+                	    // Exibir a descrição
+                	    System.out.println("📝 Descrição: " + descricaoExibida);
+                	    System.out.println("\n----------------------------------------");
+                	}
+
+
 
                 //════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
                 // 6 SAIR
@@ -355,6 +357,7 @@ public class SistemaTeste {
                     System.out.print("Select an option: ");
                     menu = sc.nextInt();
                     sc.nextLine();
+                  //════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 
                     // 1 REGISTER
                     if (menu == 1) {
@@ -376,15 +379,16 @@ public class SistemaTeste {
                         System.out.println("\nWrite the orientation description: ");
                         descricaoDaOrientacao[i] = sc.nextLine();
                         i++;
+                      //════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 
-                    // 2 SEARCH
+                     // 2 SEARCH
                     } else if (menu == 2) {
-                        System.out.println("\nAvailable Orientation Types...\n");
+                        System.out.println("\nAvailable Types of Guidance...\n");
                         for (int d = 0; d < i; d++) {
-                            System.out.println("📂 Orientation Type: " + tipoDaOrientacao[d]);
+                            System.out.println("📂 Guidance Type: " + tipoDaOrientacao[d]);
                         }
 
-                        System.out.println("\n\nSearch for the orientation type: ");
+                        System.out.println("\n\nSearch for the guidance type: ");
                         String nomeTipo = sc.nextLine();
 
                         boolean encontrado = false;
@@ -396,12 +400,12 @@ public class SistemaTeste {
                         }
 
                         if (!encontrado) {
-                            System.out.println("\n❌ Orientation type not found!");
-                            continue;
+                            System.out.println("\n❌ Guidance type not found!");
+                            continue;  
                         }
 
                         System.out.println("\n══════════════════════════════════════════════════════════════════════════");
-                        System.out.println("All titles with the orientation type: " + nomeTipo);
+                        System.out.println("All titles with the guidance type: " + nomeTipo);
                         System.out.println("══════════════════════════════════════════════════════════════════════════\n");
 
                         for (int n = 0; n < i; n++) {
@@ -410,7 +414,7 @@ public class SistemaTeste {
                             }
                         }
 
-                        System.out.println("\n\nSelect an orientation title: ");
+                        System.out.println("\n\nSelect a guidance title: ");
                         String tituloSelecionado = sc.nextLine();
                         boolean tituloEncontrado = false;
 
@@ -418,43 +422,28 @@ public class SistemaTeste {
                             if (normalizar(tituloSelecionado).equals(normalizar(tituloDaOrientacao[l]))) {
                                 tituloEncontrado = true;
 
-                                String tipoSelecionado = normalizar(tipoDaOrientacao[l]);
+                                // Display the registered description
+                                String descricaoExibida = descricaoDaOrientacao[l] != null && !descricaoDaOrientacao[l].isEmpty()
+                                                           ? descricaoDaOrientacao[l]  // Display the registered description
+                                                           : "Description not available.";  // In case the description is null or empty
 
                                 System.out.println("\n----------------------------------------");
-                                switch (tipoSelecionado) {
-                                    case "operation manual":
-                                        System.out.println("📝 Description: Detailed guidelines on the correct and efficient use of equipment.");
-                                        System.out.println("📌 Examples: Motor operation manual, transformers, generators, etc.");
-                                        break;
-                                    case "safety procedure":
-                                        System.out.println("🛡️ Description: Detailed procedures to ensure safety during operation of equipment and electrical installations.");
-                                        System.out.println("📌 Examples: Electrical installation safety procedure, electric shock risk, etc.");
-                                        break;
-                                    case "maintenance and repairs":
-                                        System.out.println("🔧 Description: Guidelines for the maintenance and repair of equipment, systems, and devices.");
-                                        System.out.println("📌 Examples: Maintenance of electric motors, power generators, etc.");
-                                        break;
-                                    case "testing and diagnostics":
-                                        System.out.println("🧪 Description: Procedures for testing and diagnosing problems in equipment and systems.");
-                                        System.out.println("📌 Examples: Transformer diagnostic test, automation, etc.");
-                                        break;
-                                    case "conduct manual and sectorial operations":
-                                        System.out.println("📘 Description: Rules and guidelines for behavior within specific sectors and their operations.");
-                                        System.out.println("📌 Examples: Conduct manual in the assembly department, etc.");
-                                        break;
-                                    default:
-                                        System.out.println("❓ Description: Description not available.");
-                                }
-
+                                System.out.println("🔖 " + tituloDaOrientacao[l]);
+                                System.out.println("📂 Type: " + tipoDaOrientacao[l]);
+                                System.out.println("📝 Description: " + descricaoExibida);
                                 System.out.println("----------------------------------------");
+
                                 break;
                             }
                         }
 
                         if (!tituloEncontrado) {
-                            System.out.println("\n❌ Title not found! You may try again.");
+                            System.out.println("\n❌ Title not found! You can try again.");
                             continue;
                         }
+                    
+                        //════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
 
                     // 3 EDIT
                     } else if (menu == 3) {
@@ -482,6 +471,8 @@ public class SistemaTeste {
                         if (!tipoEncontrado) {
                             System.out.println("\n❌ Orientation type not found to edit!");
                         }
+
+                        //════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 
                     // 4 REMOVE
                     } else if (menu == 4) {
@@ -522,44 +513,54 @@ public class SistemaTeste {
                         } else {
                             System.out.println("Item " + produtoRemovido + " not found to remove!");
                         }
+                        //════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 
-                    // 5 DISPLAY
+                     // 5 DISPLAY
                     } else if (menu == 5) {
+                        // In the block of code for menu 5 (Display), show the custom description and the default description.
                         System.out.println("\n\n════════════════════════════════════════");
-                        System.out.println("     📚 REGISTERED ORIENTATIONS         ");
+                        System.out.println("     📚 REGISTERED GUIDANCES          ");
                         System.out.println("════════════════════════════════════════");
 
                         for (int d = 0; d < i; d++) {
-                            System.out.println("\n🔖 Orientation Title: " + tituloDaOrientacao[d]);
-                            System.out.println("📂 Orientation Type: " + tipoDaOrientacao[d]);
+                            System.out.println("\n🔖 Guidance Title: " + tituloDaOrientacao[d]);
+                            System.out.println("📂 Guidance Type: " + tipoDaOrientacao[d]);
 
-                            switch (tipoDaOrientacao[d].toLowerCase()) {
-                                case "operation manual":
-                                    System.out.println("📝 Description: Detailed guidelines on the correct and efficient use of equipment.");
-                                    System.out.println("📌 Examples: Motor operation manual, transformers, generators, etc.");
-                                    break;
-                                case "safety procedure":
-                                    System.out.println("🛡️ Description: Detailed procedures to ensure safety during operation of equipment and electrical installations.");
-                                    System.out.println("📌 Examples: Electrical installation safety procedure, electric shock risk, etc.");
-                                    break;
-                                case "maintenance and repairs":
-                                    System.out.println("🔧 Description: Guidelines for the maintenance and repair of equipment, systems, and devices.");
-                                    System.out.println("📌 Examples: Maintenance of electric motors, power generators, etc.");
-                                    break;
-                                case "testing and diagnostics":
-                                    System.out.println("🧪 Description: Procedures for testing and diagnosing problems in equipment and systems.");
-                                    System.out.println("📌 Examples: Transformer diagnostic test, automation, etc.");
-                                    break;
-                                case "conduct manual and sectorial operations":
-                                    System.out.println("📘 Description: Rules and guidelines for behavior within specific sectors and their operations.");
-                                    System.out.println("📌 Examples: Conduct manual in the assembly department, etc.");
-                                    break;
-                                default:
-                                    System.out.println("❓ Description: Description not available.");
+                            // Check if a custom description was registered
+                            String descricaoExibida = descricaoDaOrientacao[d] != null && !descricaoDaOrientacao[d].isEmpty()
+                                                       ? descricaoDaOrientacao[d]  // Display the custom description
+                                                       : "";  // If no custom description, leave it blank
+
+                            // Add the default description if no custom description exists
+                            if (descricaoExibida.isEmpty()) {
+                                switch (tipoDaOrientacao[d].toLowerCase()) {
+                                    case "operation manual":
+                                        descricaoExibida = "Detailed guidelines on the proper and efficient use of equipment. Examples: Operation manual for motors, transformers, generators, etc.";
+                                        break;
+                                    case "safety procedure":
+                                        descricaoExibida = "Detailed procedures to ensure safety during the operation of electrical equipment and installations. Examples: Safety procedure for electrical installation, risk of electric shock, etc.";
+                                        break;
+                                    case "maintenance and repairs":
+                                        descricaoExibida = "Guidelines for maintenance and repair of equipment, systems, and devices. Examples: Maintenance of electric motors, power generators, etc.";
+                                        break;
+                                    case "tests and diagnostics":
+                                        descricaoExibida = "Procedures to test and diagnose issues in equipment and systems. Examples: Transformer diagnostic test, automation, etc.";
+                                        break;
+                                    case "conduct and sector operations manual":
+                                        descricaoExibida = "Standards and guidelines for conduct within specific sectors and their operations. Examples: Conduct manual for assembly sector, etc.";
+                                        break;
+                                    default:
+                                        descricaoExibida = "Default description not available.";
+                                }
                             }
 
+                            // Display the description
+                            System.out.println("📝 Description: " + descricaoExibida);
                             System.out.println("\n----------------------------------------");
                         }
+                    
+
+                        //════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 
                     // 6 EXIT
                     } else if (menu == 6) {
@@ -635,14 +636,14 @@ public class SistemaTeste {
                         descricaoDaOrientacao[i] = sc.nextLine();
                         i++;
 
-                    // 2 SUCHEN
+                     // 2 SUCHE
                     } else if (menu == 2) {
-                        System.out.println("\nVerfügbare Orientierungstypen...\n");
+                        System.out.println("\nVerfügbare Arten von Anleitungen...\n");
                         for (int d = 0; d < i; d++) {
-                            System.out.println("📂 Orientierungstyp: " + tipoDaOrientacao[d]);
+                            System.out.println("📂 Anleitungstyp: " + tipoDaOrientacao[d]);
                         }
 
-                        System.out.println("\n\nSuchen Sie den Orientierungstyp: ");
+                        System.out.println("\n\nSuchen Sie den Anleitungstyp: ");
                         String nomeTipo = sc.nextLine();
 
                         boolean encontrado = false;
@@ -654,12 +655,12 @@ public class SistemaTeste {
                         }
 
                         if (!encontrado) {
-                            System.out.println("\n❌ Orientierungstyp nicht gefunden!");
-                            continue;
+                            System.out.println("\n❌ Anleitungstyp nicht gefunden!");
+                            continue;  
                         }
 
                         System.out.println("\n══════════════════════════════════════════════════════════════════════════");
-                        System.out.println("Alle Titel mit dem Orientierungstyp: " + nomeTipo);
+                        System.out.println("Alle Titel mit dem Anleitungstyp: " + nomeTipo);
                         System.out.println("══════════════════════════════════════════════════════════════════════════\n");
 
                         for (int n = 0; n < i; n++) {
@@ -668,7 +669,7 @@ public class SistemaTeste {
                             }
                         }
 
-                        System.out.println("\n\nWählen Sie einen Orientierungstitel: ");
+                        System.out.println("\n\nWählen Sie einen Anleitungs-Titel aus: ");
                         String tituloSelecionado = sc.nextLine();
                         boolean tituloEncontrado = false;
 
@@ -676,43 +677,27 @@ public class SistemaTeste {
                             if (normalizar(tituloSelecionado).equals(normalizar(tituloDaOrientacao[l]))) {
                                 tituloEncontrado = true;
 
-                                String tipoSelecionado = normalizar(tipoDaOrientacao[l]);
+                                // Zeigt die registrierte Beschreibung an
+                                String descricaoExibida = descricaoDaOrientacao[l] != null && !descricaoDaOrientacao[l].isEmpty()
+                                                           ? descricaoDaOrientacao[l]  // Zeigt die registrierte Beschreibung an
+                                                           : "Beschreibung nicht verfügbar.";  // Falls die Beschreibung null oder leer ist
 
                                 System.out.println("\n----------------------------------------");
-                                switch (tipoSelecionado) {
-                                    case "betriebsanleitung":
-                                        System.out.println("📝 Beschreibung: Detaillierte Anweisungen zur richtigen und effizienten Nutzung von Geräten.");
-                                        System.out.println("📌 Beispiele: Motorbetriebsanleitung, Transformatoren, Generatoren, usw.");
-                                        break;
-                                    case "sicherheitsverfahren":
-                                        System.out.println("🛡️ Beschreibung: Detaillierte Verfahren zur Gewährleistung der Sicherheit bei der Nutzung von Geräten und elektrischen Installationen.");
-                                        System.out.println("📌 Beispiele: Sicherheitsverfahren für elektrische Installationen, elektrisches Schockrisiko, usw.");
-                                        break;
-                                    case "wartung und reparaturen":
-                                        System.out.println("🔧 Beschreibung: Anweisungen zur Wartung und Reparatur von Geräten, Systemen und Anlagen.");
-                                        System.out.println("📌 Beispiele: Wartung von Elektromotoren, Stromgeneratoren, usw.");
-                                        break;
-                                    case "tests und diagnostik":
-                                        System.out.println("🧪 Beschreibung: Verfahren zum Testen und Diagnostizieren von Problemen in Geräten und Systemen.");
-                                        System.out.println("📌 Beispiele: Diagnosetests für Transformatoren, Automatisierung, usw.");
-                                        break;
-                                    case "verhaltenshandbuch und sektorielle operationen":
-                                        System.out.println("📘 Beschreibung: Regeln und Richtlinien für das Verhalten in spezifischen Sektoren und deren Operationen.");
-                                        System.out.println("📌 Beispiele: Verhaltenshandbuch in der Montagabteilung, usw.");
-                                        break;
-                                    default:
-                                        System.out.println("❓ Beschreibung: Beschreibung nicht verfügbar.");
-                                }
-
+                                System.out.println("🔖 " + tituloDaOrientacao[l]);
+                                System.out.println("📂 Typ: " + tipoDaOrientacao[l]);
+                                System.out.println("📝 Beschreibung: " + descricaoExibida);
                                 System.out.println("----------------------------------------");
+
                                 break;
                             }
                         }
 
                         if (!tituloEncontrado) {
-                            System.out.println("\n❌ Titel nicht gefunden! Versuchen Sie es erneut.");
+                            System.out.println("\n❌ Titel nicht gefunden! Sie können es erneut versuchen.");
                             continue;
                         }
+                 
+                        
 
                     // 3 BEARBEITEN
                     } else if (menu == 3) {
@@ -781,43 +766,51 @@ public class SistemaTeste {
                             System.out.println("Element " + produtoRemovido + " nicht gefunden, um es zu löschen!");
                         }
 
-                    // 5 ANZEIGEN
+                     // 5 ANZEIGEN
                     } else if (menu == 5) {
+                        // Im Block des Menüs 5 (Anzeigen), zeigen Sie die benutzerdefinierte Beschreibung und die Standardbeschreibung an.
                         System.out.println("\n\n════════════════════════════════════════");
-                        System.out.println("     📚 REGISTRIERTE ORIENTIERUNGEN   ");
+                        System.out.println("     📚 REGISTRIERTE GUIDANZEN          ");
                         System.out.println("════════════════════════════════════════");
 
                         for (int d = 0; d < i; d++) {
-                            System.out.println("\n🔖 Orientierungstitel: " + tituloDaOrientacao[d]);
-                            System.out.println("📂 Orientierungstyp: " + tipoDaOrientacao[d]);
+                            System.out.println("\n🔖 Titel der Guidance: " + tituloDaOrientacao[d]);
+                            System.out.println("📂 Guidance-Typ: " + tipoDaOrientacao[d]);
 
-                            switch (tipoDaOrientacao[d].toLowerCase()) {
-                                case "betriebsanleitung":
-                                    System.out.println("📝 Beschreibung: Detaillierte Anweisungen zur richtigen und effizienten Nutzung von Geräten.");
-                                    System.out.println("📌 Beispiele: Motorbetriebsanleitung, Transformatoren, Generatoren, usw.");
-                                    break;
-                                case "sicherheitsverfahren":
-                                    System.out.println("🛡️ Beschreibung: Detaillierte Verfahren zur Gewährleistung der Sicherheit bei der Nutzung von Geräten und elektrischen Installationen.");
-                                    System.out.println("📌 Beispiele: Sicherheitsverfahren für elektrische Installationen, elektrisches Schockrisiko, usw.");
-                                    break;
-                                case "wartung und reparaturen":
-                                    System.out.println("🔧 Beschreibung: Anweisungen zur Wartung und Reparatur von Geräten, Systemen und Anlagen.");
-                                    System.out.println("📌 Beispiele: Wartung von Elektromotoren, Stromgeneratoren, usw.");
-                                    break;
-                                case "tests und diagnostik":
-                                    System.out.println("🧪 Beschreibung: Verfahren zum Testen und Diagnostizieren von Problemen in Geräten und Systemen.");
-                                    System.out.println("📌 Beispiele: Diagnosetests für Transformatoren, Automatisierung, usw.");
-                                    break;
-                                case "verhaltenshandbuch und sektorielle operationen":
-                                    System.out.println("📘 Beschreibung: Regeln und Richtlinien für das Verhalten in spezifischen Sektoren und deren Operationen.");
-                                    System.out.println("📌 Beispiele: Verhaltenshandbuch in der Montagabteilung, usw.");
-                                    break;
-                                default:
-                                    System.out.println("❓ Beschreibung: Beschreibung nicht verfügbar.");
+                            // Überprüfen, ob eine benutzerdefinierte Beschreibung registriert wurde
+                            String descricaoExibida = descricaoDaOrientacao[d] != null && !descricaoDaOrientacao[d].isEmpty()
+                                                       ? descricaoDaOrientacao[d]  // Zeigt die benutzerdefinierte Beschreibung an
+                                                       : "";  // Wenn keine benutzerdefinierte Beschreibung, bleibt es leer
+
+                            // Fügen Sie die Standardbeschreibung hinzu, wenn keine benutzerdefinierte Beschreibung vorhanden ist
+                            if (descricaoExibida.isEmpty()) {
+                                switch (tipoDaOrientacao[d].toLowerCase()) {
+                                    case "betriebsanleitung":
+                                        descricaoExibida = "Detaillierte Richtlinien für die richtige und effiziente Nutzung von Geräten. Beispiele: Betriebsanleitung für Motoren, Transformatoren, Generatoren usw.";
+                                        break;
+                                    case "sicherheitsverfahren":
+                                        descricaoExibida = "Detaillierte Verfahren zur Gewährleistung der Sicherheit bei der Nutzung von elektrischen Geräten und Anlagen. Beispiele: Sicherheitsverfahren für die Elektroinstallation, Stromschlaggefahr usw.";
+                                        break;
+                                    case "wartung und reparaturen":
+                                        descricaoExibida = "Richtlinien für Wartung und Reparatur von Geräten, Systemen und Vorrichtungen. Beispiele: Wartung von Elektromotoren, Stromgeneratoren usw.";
+                                        break;
+                                    case "tests und diagnostik":
+                                        descricaoExibida = "Verfahren zum Testen und Diagnostizieren von Problemen in Geräten und Systemen. Beispiele: Diagnoseprüfung von Transformatoren, Automatisierung usw.";
+                                        break;
+                                    case "verhaltens- und sektorenbetriebsanleitung":
+                                        descricaoExibida = "Normen und Richtlinien für das Verhalten in bestimmten Sektoren und deren Betrieb. Beispiele: Verhaltensrichtlinie für den Montagebereich usw.";
+                                        break;
+                                    default:
+                                        descricaoExibida = "Standardbeschreibung nicht verfügbar.";
+                                }
                             }
 
+                            // Zeigt die Beschreibung an
+                            System.out.println("📝 Beschreibung: " + descricaoExibida);
                             System.out.println("\n----------------------------------------");
-                        }
+                        
+                    }
+
 
                     // 6 BEENDEN
                     } else if (menu == 6) {
@@ -894,9 +887,9 @@ public class SistemaTeste {
                         descricaoDaOrientacao[i] = sc.nextLine();
                         i++;
 
-                    // 2 BUSCAR
+                     // 2 BUSCAR
                     } else if (menu == 2) {
-                        System.out.println("\nTipos de orientación disponibles...\n");
+                        System.out.println("\nTipos de orientaciones disponibles...\n");
                         for (int d = 0; d < i; d++) {
                             System.out.println("📂 Tipo de orientación: " + tipoDaOrientacao[d]);
                         }
@@ -914,7 +907,7 @@ public class SistemaTeste {
 
                         if (!encontrado) {
                             System.out.println("\n❌ Tipo de orientación no encontrado!");
-                            continue;
+                            continue;  
                         }
 
                         System.out.println("\n══════════════════════════════════════════════════════════════════════════");
@@ -927,7 +920,7 @@ public class SistemaTeste {
                             }
                         }
 
-                        System.out.println("\n\nElija un título de orientación: ");
+                        System.out.println("\n\nSeleccione un título de orientación: ");
                         String tituloSelecionado = sc.nextLine();
                         boolean tituloEncontrado = false;
 
@@ -935,43 +928,27 @@ public class SistemaTeste {
                             if (normalizar(tituloSelecionado).equals(normalizar(tituloDaOrientacao[l]))) {
                                 tituloEncontrado = true;
 
-                                String tipoSelecionado = normalizar(tipoDaOrientacao[l]);
+                                // Muestra la descripción registrada
+                                String descricaoExibida = descricaoDaOrientacao[l] != null && !descricaoDaOrientacao[l].isEmpty()
+                                                           ? descricaoDaOrientacao[l]  // Muestra la descripción registrada
+                                                           : "Descripción no disponible.";  // En caso de que la descripción sea nula o esté vacía
 
                                 System.out.println("\n----------------------------------------");
-                                switch (tipoSelecionado) {
-                                    case "manual de operación":
-                                        System.out.println("📝 Descripción: Instrucciones detalladas para el uso adecuado y eficiente de los dispositivos.");
-                                        System.out.println("📌 Ejemplos: Manual de operación del motor, transformadores, generadores, etc.");
-                                        break;
-                                    case "procedimientos de seguridad":
-                                        System.out.println("🛡️ Descripción: Procedimientos detallados para garantizar la seguridad en el uso de dispositivos e instalaciones eléctricas.");
-                                        System.out.println("📌 Ejemplos: Procedimientos de seguridad para instalaciones eléctricas, riesgo de descarga eléctrica, etc.");
-                                        break;
-                                    case "mantenimiento y reparaciones":
-                                        System.out.println("🔧 Descripción: Instrucciones para el mantenimiento y reparación de dispositivos, sistemas y equipos.");
-                                        System.out.println("📌 Ejemplos: Mantenimiento de motores eléctricos, generadores eléctricos, etc.");
-                                        break;
-                                    case "pruebas y diagnóstico":
-                                        System.out.println("🧪 Descripción: Procedimientos para probar y diagnosticar problemas en dispositivos y sistemas.");
-                                        System.out.println("📌 Ejemplos: Pruebas de diagnóstico para transformadores, automatización, etc.");
-                                        break;
-                                    case "manual de comportamiento y operaciones sectoriales":
-                                        System.out.println("📘 Descripción: Reglas y directrices para el comportamiento en sectores específicos y sus operaciones.");
-                                        System.out.println("📌 Ejemplos: Manual de comportamiento en el departamento de montaje, etc.");
-                                        break;
-                                    default:
-                                        System.out.println("❓ Descripción: Descripción no disponible.");
-                                }
-
+                                System.out.println("🔖 " + tituloDaOrientacao[l]);
+                                System.out.println("📂 Tipo: " + tipoDaOrientacao[l]);
+                                System.out.println("📝 Descripción: " + descricaoExibida);
                                 System.out.println("----------------------------------------");
+
                                 break;
                             }
                         }
 
                         if (!tituloEncontrado) {
-                            System.out.println("\n❌ Título no encontrado! Intente de nuevo.");
+                            System.out.println("\n❌ Título no encontrado! Puedes intentarlo nuevamente.");
                             continue;
                         }
+                    
+
 
                     // 3 EDITAR
                     } else if (menu == 3) {
@@ -1040,43 +1017,51 @@ public class SistemaTeste {
                             System.out.println("¡Elemento " + produtoRemovido + " no encontrado para eliminar!");
                         }
 
-                    // 5 MOSTRAR
+                     // 5 MOSTRAR
                     } else if (menu == 5) {
+                        // En el bloque de código del menú 5 (Mostrar), mostrar la descripción personalizada y la descripción predeterminada.
                         System.out.println("\n\n════════════════════════════════════════");
-                        System.out.println("     📚 ORIENTACIONES REGISTRADAS   ");
+                        System.out.println("     📚 ORIENTACIONES REGISTRADAS        ");
                         System.out.println("════════════════════════════════════════");
 
                         for (int d = 0; d < i; d++) {
-                            System.out.println("\n🔖 Título de orientación: " + tituloDaOrientacao[d]);
-                            System.out.println("📂 Tipo de orientación: " + tipoDaOrientacao[d]);
+                            System.out.println("\n🔖 Título de la Orientación: " + tituloDaOrientacao[d]);
+                            System.out.println("📂 Tipo de la Orientación: " + tipoDaOrientacao[d]);
 
-                            switch (tipoDaOrientacao[d].toLowerCase()) {
-                                case "manual de operación":
-                                    System.out.println("📝 Descripción: Instrucciones detalladas para el uso adecuado y eficiente de los dispositivos.");
-                                    System.out.println("📌 Ejemplos: Manual de operación del motor, transformadores, generadores, etc.");
-                                    break;
-                                case "procedimientos de seguridad":
-                                    System.out.println("🛡️ Descripción: Procedimientos detallados para garantizar la seguridad en el uso de dispositivos e instalaciones eléctricas.");
-                                    System.out.println("📌 Ejemplos: Procedimientos de seguridad para instalaciones eléctricas, riesgo de descarga eléctrica, etc.");
-                                    break;
-                                case "mantenimiento y reparaciones":
-                                    System.out.println("🔧 Descripción: Instrucciones para el mantenimiento y reparación de dispositivos, sistemas y equipos.");
-                                    System.out.println("📌 Ejemplos: Mantenimiento de motores eléctricos, generadores eléctricos, etc.");
-                                    break;
-                                case "pruebas y diagnóstico":
-                                    System.out.println("🧪 Descripción: Procedimientos para probar y diagnosticar problemas en dispositivos y sistemas.");
-                                    System.out.println("📌 Ejemplos: Pruebas de diagnóstico para transformadores, automatización, etc.");
-                                    break;
-                                case "manual de comportamiento y operaciones sectoriales":
-                                    System.out.println("📘 Descripción: Reglas y directrices para el comportamiento en sectores específicos y sus operaciones.");
-                                    System.out.println("📌 Ejemplos: Manual de comportamiento en el departamento de montaje, etc.");
-                                    break;
-                                default:
-                                    System.out.println("❓ Descripción: Descripción no disponible.");
+                            // Verificar si se ha registrado una descripción personalizada
+                            String descricaoExibida = descricaoDaOrientacao[d] != null && !descricaoDaOrientacao[d].isEmpty()
+                                                       ? descricaoDaOrientacao[d]  // Muestra la descripción personalizada
+                                                       : "";  // Si no tiene descripción personalizada, deja en blanco
+
+                            // Agregar la descripción predeterminada si no existe una descripción personalizada
+                            if (descricaoExibida.isEmpty()) {
+                                switch (tipoDaOrientacao[d].toLowerCase()) {
+                                    case "manual de operación":
+                                        descricaoExibida = "Orientaciones detalladas sobre el uso adecuado y eficiente del equipo. Ejemplos: Manual de operación de motores, transformadores, generadores, etc.";
+                                        break;
+                                    case "procedimiento de seguridad":
+                                        descricaoExibida = "Procedimientos detallados para garantizar la seguridad durante la operación de equipos e instalaciones eléctricas. Ejemplos: Procedimiento de seguridad para instalación eléctrica, riesgo de descarga eléctrica, etc.";
+                                        break;
+                                    case "mantenimiento y reparaciones":
+                                        descricaoExibida = "Orientaciones para el mantenimiento y reparación de equipos, sistemas y dispositivos. Ejemplos: Mantenimiento de motores eléctricos, generadores de energía, etc.";
+                                        break;
+                                    case "pruebas y diagnóstico":
+                                        descricaoExibida = "Procedimientos para probar y diagnosticar problemas en equipos y sistemas. Ejemplos: Prueba de diagnóstico de transformadores, automatización, etc.";
+                                        break;
+                                    case "manual de conducta y operaciones sectoriales":
+                                        descricaoExibida = "Normas y orientaciones para la conducta dentro de sectores específicos y sus operaciones. Ejemplos: Manual de conducta en el sector de montaje, etc.";
+                                        break;
+                                    default:
+                                        descricaoExibida = "Descripción predeterminada no disponible.";
+                                }
                             }
 
+                            // Muestra la descripción
+                            System.out.println("📝 Descripción: " + descricaoExibida);
                             System.out.println("\n----------------------------------------");
                         }
+                    
+
 
                     // 6 SALIR
                     } else if (menu == 6) {
@@ -1154,14 +1139,14 @@ public class SistemaTeste {
                         descricaoDaOrientacao[i] = sc.nextLine();
                         i++;
 
-                    // 2 CHERCHER
+                     // 2 RECHERCHER
                     } else if (menu == 2) {
-                        System.out.println("\nTypes d'orientations disponibles...\n");
+                        System.out.println("\nTypes de guidances disponibles...\n");
                         for (int d = 0; d < i; d++) {
-                            System.out.println("📂 Type d'orientation: " + tipoDaOrientacao[d]);
+                            System.out.println("📂 Type de guidance: " + tipoDaOrientacao[d]);
                         }
 
-                        System.out.println("\n\nCherchez le type d'orientation : ");
+                        System.out.println("\n\nRecherchez le type de guidance : ");
                         String nomeTipo = sc.nextLine();
 
                         boolean encontrado = false;
@@ -1173,12 +1158,12 @@ public class SistemaTeste {
                         }
 
                         if (!encontrado) {
-                            System.out.println("\n❌ Type d'orientation non trouvé!");
-                            continue;
+                            System.out.println("\n❌ Type de guidance non trouvé !");
+                            continue;  
                         }
 
                         System.out.println("\n══════════════════════════════════════════════════════════════════════════");
-                        System.out.println("Tous les titres avec le type d'orientation : " + nomeTipo);
+                        System.out.println("Tous les titres avec le type de guidance : " + nomeTipo);
                         System.out.println("══════════════════════════════════════════════════════════════════════════\n");
 
                         for (int n = 0; n < i; n++) {
@@ -1187,7 +1172,7 @@ public class SistemaTeste {
                             }
                         }
 
-                        System.out.println("\n\nChoisissez un titre d'orientation : ");
+                        System.out.println("\n\nSélectionnez un titre de guidance : ");
                         String tituloSelecionado = sc.nextLine();
                         boolean tituloEncontrado = false;
 
@@ -1195,43 +1180,27 @@ public class SistemaTeste {
                             if (normalizar(tituloSelecionado).equals(normalizar(tituloDaOrientacao[l]))) {
                                 tituloEncontrado = true;
 
-                                String tipoSelecionado = normalizar(tipoDaOrientacao[l]);
+                                // Affiche la description enregistrée
+                                String descricaoExibida = descricaoDaOrientacao[l] != null && !descricaoDaOrientacao[l].isEmpty()
+                                                           ? descricaoDaOrientacao[l]  // Affiche la description enregistrée
+                                                           : "Description non disponible.";  // Si la description est nulle ou vide
 
                                 System.out.println("\n----------------------------------------");
-                                switch (tipoSelecionado) {
-                                    case "manuel d'opération":
-                                        System.out.println("📝 Description : Instructions détaillées pour une utilisation correcte et efficace des dispositifs.");
-                                        System.out.println("📌 Exemples : Manuel d'opération du moteur, transformateurs, générateurs, etc.");
-                                        break;
-                                    case "procédures de sécurité":
-                                        System.out.println("🛡️ Description : Procédures détaillées pour garantir la sécurité lors de l'utilisation des dispositifs et des installations électriques.");
-                                        System.out.println("📌 Exemples : Procédures de sécurité pour les installations électriques, risque de décharge électrique, etc.");
-                                        break;
-                                    case "maintenance et réparations":
-                                        System.out.println("🔧 Description : Instructions pour la maintenance et la réparation des dispositifs, systèmes et équipements.");
-                                        System.out.println("📌 Exemples : Maintenance des moteurs électriques, générateurs électriques, etc.");
-                                        break;
-                                    case "tests et diagnostic":
-                                        System.out.println("🧪 Description : Procédures pour tester et diagnostiquer les problèmes dans les dispositifs et systèmes.");
-                                        System.out.println("📌 Exemples : Tests de diagnostic pour transformateurs, automatisation, etc.");
-                                        break;
-                                    case "manuel de comportement et opérations sectorielles":
-                                        System.out.println("📘 Description : Règles et directives pour le comportement dans des secteurs spécifiques et leurs opérations.");
-                                        System.out.println("📌 Exemples : Manuel de comportement dans le département de montage, etc.");
-                                        break;
-                                    default:
-                                        System.out.println("❓ Description : Description non disponible.");
-                                }
-
+                                System.out.println("🔖 " + tituloDaOrientacao[l]);
+                                System.out.println("📂 Type : " + tipoDaOrientacao[l]);
+                                System.out.println("📝 Description : " + descricaoExibida);
                                 System.out.println("----------------------------------------");
+
                                 break;
                             }
                         }
 
                         if (!tituloEncontrado) {
-                            System.out.println("\n❌ Titre non trouvé! Essayez à nouveau.");
+                            System.out.println("\n❌ Titre non trouvé ! Vous pouvez essayer à nouveau.");
                             continue;
-                            }
+                        }
+                    
+
                         
                     // 3 MODIFIER
                     } else if (menu == 3) {
@@ -1300,43 +1269,52 @@ public class SistemaTeste {
                             System.out.println("L'élément " + produtoRemovido + " non trouvé pour suppression!");
                         }
 
-                    // 5 AFFICHER
+                     // 5 AFFICHER
                     } else if (menu == 5) {
+                        // Dans le bloc de code du menu 5 (Afficher), afficher la description personnalisée et la description par défaut.
                         System.out.println("\n\n════════════════════════════════════════");
-                        System.out.println("     📚 ORIENTATIONS ENREGISTRÉES   ");
+                        System.out.println("     📚 ORIENTATIONS ENREGISTRÉES         ");
                         System.out.println("════════════════════════════════════════");
 
                         for (int d = 0; d < i; d++) {
-                            System.out.println("\n🔖 Titre d'orientation: " + tituloDaOrientacao[d]);
-                            System.out.println("📂 Type d'orientation: " + tipoDaOrientacao[d]);
+                            System.out.println("\n🔖 Titre de l'Orientation: " + tituloDaOrientacao[d]);
+                            System.out.println("📂 Type de l'Orientation: " + tipoDaOrientacao[d]);
 
-                            switch (tipoDaOrientacao[d].toLowerCase()) {
-                                case "manuel d'opération":
-                                    System.out.println("📝 Description : Instructions détaillées pour une utilisation correcte et efficace des dispositifs.");
-                                    System.out.println("📌 Exemples : Manuel d'opération du moteur, transformateurs, générateurs, etc.");
-                                    break;
-                                case "procédures de sécurité":
-                                    System.out.println("🛡️ Description : Procédures détaillées pour garantir la sécurité lors de l'utilisation des dispositifs et des installations électriques.");
-                                    System.out.println("📌 Exemples : Procédures de sécurité pour les installations électriques, risque de décharge électrique, etc.");
-                                    break;
-                                case "maintenance et réparations":
-                                    System.out.println("🔧 Description : Instructions pour la maintenance et la réparation des dispositifs, systèmes et équipements.");
-                                    System.out.println("📌 Exemples : Maintenance des moteurs électriques, générateurs électriques, etc.");
-                                    break;
-                                case "tests et diagnostic":
-                                    System.out.println("🧪 Description : Procédures pour tester et diagnostiquer les problèmes dans les dispositifs et systèmes.");
-                                    System.out.println("📌 Exemples : Tests de diagnostic pour transformateurs, automatisation, etc.");
-                                    break;
-                                case "manuel de comportement et opérations sectorielles":
-                                    System.out.println("📘 Description : Règles et directives pour le comportement dans des secteurs spécifiques et leurs opérations.");
-                                    System.out.println("📌 Exemples : Manuel de comportement dans le département de montage, etc.");
-                                    break;
-                                default:
-                                    System.out.println("❓ Description : Description non disponible.");
+                            // Vérifier si une description personnalisée a été enregistrée
+                            String descricaoExibida = descricaoDaOrientacao[d] != null && !descricaoDaOrientacao[d].isEmpty()
+                                                       ? descricaoDaOrientacao[d]  // Affiche la description personnalisée
+                                                       : "";  // Si aucune description personnalisée, laisser vide
+
+                            // Ajouter la description par défaut si aucune description personnalisée n'existe
+                            if (descricaoExibida.isEmpty()) {
+                                switch (tipoDaOrientacao[d].toLowerCase()) {
+                                    case "manuel d'opération":
+                                        descricaoExibida = "Directives détaillées sur l'utilisation correcte et efficace des équipements. Exemples : Manuel d'opération pour moteurs, transformateurs, générateurs, etc.";
+                                        break;
+                                    case "procédure de sécurité":
+                                        descricaoExibida = "Procédures détaillées pour garantir la sécurité lors de l'opération d'équipements et d'installations électriques. Exemples : Procédure de sécurité pour installation électrique, risque de choc électrique, etc.";
+                                        break;
+                                    case "maintenance et réparations":
+                                        descricaoExibida = "Directives pour la maintenance et les réparations des équipements, systèmes et dispositifs. Exemples : Maintenance des moteurs électriques, générateurs d'énergie, etc.";
+                                        break;
+                                    case "tests et diagnostic":
+                                        descricaoExibida = "Procédures pour tester et diagnostiquer des problèmes dans les équipements et systèmes. Exemples : Test de diagnostic pour transformateurs, automatisation, etc.";
+                                        break;
+                                    case "manuel de conduite et opérations sectorielles":
+                                        descricaoExibida = "Normes et directives pour le comportement dans des secteurs spécifiques et leurs opérations. Exemples : Manuel de conduite pour le secteur de l'assemblage, etc.";
+                                        break;
+                                    default:
+                                        descricaoExibida = "Description par défaut non disponible.";
+                                }
                             }
 
+                            // Afficher la description
+                            System.out.println("📝 Description: " + descricaoExibida);
                             System.out.println("\n----------------------------------------");
                         }
+                    
+
+
 
                     // 6 QUITTER
                     } else if (menu == 6) {
@@ -1350,4 +1328,3 @@ public class SistemaTeste {
         }
     }
     
-
