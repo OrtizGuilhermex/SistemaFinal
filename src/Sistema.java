@@ -12,7 +12,7 @@ public class Sistema_WegOne {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
         // VARIAVEIS
         int menu;
@@ -38,7 +38,7 @@ public class Sistema_WegOne {
             System.out.println("  5 - Francês");
             System.out.println("════════════════════════════════════════");
             System.out.print("Digite sua opção: ");
-            idioma = sc.nextInt();
+            idioma = input.nextInt();
 
             // Caso digite um numero indisponivel o sistema retornara o menu
             if (idioma >= 1 && idioma <= 5) {
@@ -108,8 +108,8 @@ public class Sistema_WegOne {
                 System.out.println("  6 - 🚪 Sair");
                 System.out.println("════════════════════════════════════════");
                 System.out.print("Selecione uma opção: ");
-                menu = sc.nextInt();
-                sc.nextLine();
+                menu = input.nextInt();
+                input.nextLine();
 
                 // ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 
@@ -133,12 +133,12 @@ public class Sistema_WegOne {
                     }
 
                     System.out.println("\n\nEscreva o título da orientação: ");
-                    tituloDaOrientacao[i] = sc.nextLine();
+                    tituloDaOrientacao[i] = input.nextLine();
                     System.out.println(
                             "\nEscreva o Tipo da orientação: [Manual de Operação, Procedimento de Segurança, Manutenção e Reparos, Testes e Diagnóstico ou Manual de Conduta e Operações Setoriais]: 	");
-                    tipoDaOrientacao[i] = sc.nextLine();
+                    tipoDaOrientacao[i] = input.nextLine();
                     System.out.println("\nEscreva a descrição da orientação: ");
-                    descricaoDaOrientacao[i] = sc.nextLine();
+                    descricaoDaOrientacao[i] = input.nextLine();
                     i++; // Incrementa o índice após adicionar
 
                     // ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
@@ -159,7 +159,7 @@ public class Sistema_WegOne {
                     }
 
                     System.out.println("\n\nPesquise o tipo da orientação: ");
-                    String nomeTipo = sc.nextLine();
+                    String nomeTipo = input.nextLine();
 
                     boolean encontrado = false;
                     for (int j = 0; j < i; j++) {
@@ -186,7 +186,7 @@ public class Sistema_WegOne {
                     }
 
                     System.out.println("\n\nSelecione um título da orientação: ");
-                    String tituloSelecionado = sc.nextLine();
+                    String tituloSelecionado = input.nextLine();
                     boolean tituloEncontrado = false;
 
                     // Exibe o título, tipo e descrição do item selecionado
@@ -228,7 +228,7 @@ public class Sistema_WegOne {
                     }
 
                     System.out.println("\nEscreva o tipo de orientação que você deseja mudar: ");
-                    atualizarOrientacao = sc.nextLine();
+                    atualizarOrientacao = input.nextLine();
 
                     String tipoAtualNormalizado = normalizar(atualizarOrientacao);
                     boolean tipoEncontrado = false;
@@ -239,7 +239,7 @@ public class Sistema_WegOne {
                             tipoEncontrado = true;
                             System.out.println(
                                     "\n\nTipo de Orientação selecionada: " + tipoDaOrientacao[h] + "\n\nNovo Tipo: ");
-                            atualizarOrientacao = sc.nextLine();
+                            atualizarOrientacao = input.nextLine();
                             tipoDaOrientacao[h] = atualizarOrientacao;
                             break;
                         }
@@ -260,7 +260,7 @@ public class Sistema_WegOne {
                         System.out.println("📚 " + tituloDaOrientacao[p]);
                     }
                     System.out.println("\nDigite o item que você deseja remover: ");
-                    produtoRemovido = sc.nextLine();
+                    produtoRemovido = input.nextLine();
 
                     String nomeProdutoNormalizado = normalizar(produtoRemovido);
                     boolean removido = false;
@@ -413,8 +413,8 @@ public class Sistema_WegOne {
                 System.out.println("  6 - 🚪 Exit");
                 System.out.println("════════════════════════════════════════");
                 System.out.print("Select an option: ");
-                menu = sc.nextInt();
-                sc.nextLine();
+                menu = input.nextInt();
+                input.nextLine();
 
                 // ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
 
@@ -436,12 +436,12 @@ public class Sistema_WegOne {
                     }
 
                     System.out.println("\n\nEnter the guidance title: ");
-                    tituloDaOrientacao[i] = sc.nextLine();
+                    tituloDaOrientacao[i] = input.nextLine();
                     System.out.println(
                             "\nEnter the guidance type: [Operation Manual, Safety Procedure, Maintenance and Repairs, Testing and Diagnosis or Sector Conduct and Operations Manual]: 	");
-                    tipoDaOrientacao[i] = sc.nextLine();
+                    tipoDaOrientacao[i] = input.nextLine();
                     System.out.println("\nEnter the guidance description: ");
-                    descricaoDaOrientacao[i] = sc.nextLine();
+                    descricaoDaOrientacao[i] = input.nextLine();
                     i++; // Increment index after adding
 
                     // ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
@@ -459,7 +459,7 @@ public class Sistema_WegOne {
                         System.out.println("📂 Guidance Type: " + tipo);
                     }
                     System.out.println("\n\nSearch for a guidance type: ");
-                    String nomeTipo = sc.nextLine();
+                    String nomeTipo = input.nextLine();
                     boolean encontrado = false;
                     for (int j = 0; j < i; j++) {
                         if (normalizar(nomeTipo).equals(normalizar(tipoDaOrientacao[j]))) {
@@ -481,7 +481,7 @@ public class Sistema_WegOne {
                         }
                     }
                     System.out.println("\n\nSelect a guidance title: ");
-                    String tituloSelecionado = sc.nextLine();
+                    String tituloSelecionado = input.nextLine();
                     boolean tituloEncontrado = false;
                     // Display title, type and description of selected item
                     for (int l = 0; l < i; l++) {
@@ -516,7 +516,7 @@ public class Sistema_WegOne {
                         System.out.println("📂 Guidance Type: " + tipo);
                     }
                     System.out.println("\nEnter the guidance type you want to change: ");
-                    atualizarOrientacao = sc.nextLine();
+                    atualizarOrientacao = input.nextLine();
                     String tipoAtualNormalizado = normalizar(atualizarOrientacao);
                     boolean tipoEncontrado = false;
                     // Search for guidance type to be edited
@@ -524,7 +524,7 @@ public class Sistema_WegOne {
                         if (normalizar(tipoDaOrientacao[h]).equals(tipoAtualNormalizado)) {
                             tipoEncontrado = true;
                             System.out.println("\n\nSelected Guidance Type: " + tipoDaOrientacao[h] + "\n\nNew Type: ");
-                            atualizarOrientacao = sc.nextLine();
+                            atualizarOrientacao = input.nextLine();
                             tipoDaOrientacao[h] = atualizarOrientacao;
                             break;
                         }
@@ -543,7 +543,7 @@ public class Sistema_WegOne {
                         System.out.println("📚 " + tituloDaOrientacao[p]);
                     }
                     System.out.println("\nEnter the item you want to remove: ");
-                    produtoRemovido = sc.nextLine();
+                    produtoRemovido = input.nextLine();
                     String nomeProdutoNormalizado = normalizar(produtoRemovido);
                     boolean removido = false;
                     for (int k = 0; k < i; k++) {
@@ -685,8 +685,8 @@ public class Sistema_WegOne {
                 System.out.println("  6 - 🚪 Beenden");
                 System.out.println("════════════════════════════════════════");
                 System.out.print("Wählen Sie eine Option: ");
-                menu = sc.nextInt();
-                sc.nextLine();
+                menu = input.nextInt();
+                input.nextLine();
                 // ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
                 // 1 REGISTRIEREN
                 if (menu == 1) {
@@ -704,12 +704,12 @@ public class Sistema_WegOne {
                         descricaoDaOrientacao = novaDescricao;
                     }
                     System.out.println("\n\nGeben Sie den Titel der Anleitung ein: ");
-                    tituloDaOrientacao[i] = sc.nextLine();
+                    tituloDaOrientacao[i] = input.nextLine();
                     System.out.println(
                             "\nGeben Sie den Typ der Anleitung ein: [Betriebsanleitung, Sicherheitsverfahren, Wartung und Reparaturen, Tests und Diagnose oder Verhaltens- und Bereichsrichtlinie]: 	");
-                    tipoDaOrientacao[i] = sc.nextLine();
+                    tipoDaOrientacao[i] = input.nextLine();
                     System.out.println("\nGeben Sie die Beschreibung der Anleitung ein: ");
-                    descricaoDaOrientacao[i] = sc.nextLine();
+                    descricaoDaOrientacao[i] = input.nextLine();
                     i++; // Index nach Hinzufügen erhöhen
                     // ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
                     // 2 SUCHEN
@@ -725,11 +725,11 @@ public class Sistema_WegOne {
                         System.out.println("📂 Anleitungstyp: " + tipo);
                     }
                     System.out.println("\n\nSuchen Sie nach einem Anleitungstyp: ");
-                    String nomeTipo = sc.nextLine();
+                    String nomeTipo = input.nextLine();
                     boolean encontrado = false;
                     for (int j = 0; j < i; j++) {
                         if (normalizar(nomeTipo).equals(normalizar(tipoDaOrientacao[j]))) {
-                            encontrado = true;
+                        	encontrado = true;
                             break;
                         }
                     }
@@ -747,7 +747,7 @@ public class Sistema_WegOne {
                         }
                     }
                     System.out.println("\n\nWählen Sie einen Anleitungstitel: ");
-                    String tituloSelecionado = sc.nextLine();
+                    String tituloSelecionado = input.nextLine();
                     boolean tituloEncontrado = false;
                     // Zeigt Titel, Typ und Beschreibung des ausgewählten Elements an
                     for (int l = 0; l < i; l++) {
@@ -780,7 +780,7 @@ public class Sistema_WegOne {
                         System.out.println("📂 Anleitungstyp: " + tipo);
                     }
                     System.out.println("\nGeben Sie den Anleitungstyp ein, den Sie ändern möchten: ");
-                    atualizarOrientacao = sc.nextLine();
+                    atualizarOrientacao = input.nextLine();
                     String tipoAtualNormalizado = normalizar(atualizarOrientacao);
                     boolean tipoEncontrado = false;
                     // Sucht nach dem zu bearbeitenden Anleitungstyp
@@ -789,7 +789,7 @@ public class Sistema_WegOne {
                             tipoEncontrado = true;
                             System.out.println(
                                     "\n\nAusgewählter Anleitungstyp: " + tipoDaOrientacao[h] + "\n\nNeuer Typ: ");
-                            atualizarOrientacao = sc.nextLine();
+                            atualizarOrientacao = input.nextLine();
                             tipoDaOrientacao[h] = atualizarOrientacao;
                             break;
                         }
@@ -807,7 +807,7 @@ public class Sistema_WegOne {
                         System.out.println("📚 " + tituloDaOrientacao[p]);
                     }
                     System.out.println("\nGeben Sie das zu löschende Element ein: ");
-                    produtoRemovido = sc.nextLine();
+                    produtoRemovido = input.nextLine();
                     String nomeProdutoNormalizado = normalizar(produtoRemovido);
                     boolean removido = false;
                     for (int k = 0; k < i; k++) {
@@ -944,8 +944,8 @@ public class Sistema_WegOne {
                 System.out.println("  6 - 🚪 Salir");
                 System.out.println("════════════════════════════════════════");
                 System.out.print("Seleccione una opción: ");
-                menu = sc.nextInt();
-                sc.nextLine();
+                menu = input.nextInt();
+                input.nextLine();
                 // ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
                 // 1 REGISTRAR
                 if (menu == 1) {
@@ -963,12 +963,12 @@ public class Sistema_WegOne {
                         descricaoDaOrientacao = novaDescricao;
                     }
                     System.out.println("\n\nEscriba el título de la orientación: ");
-                    tituloDaOrientacao[i] = sc.nextLine();
+                    tituloDaOrientacao[i] = input.nextLine();
                     System.out.println(
                             "\nEscriba el Tipo de orientación: [Manual de Operación, Procedimiento de Seguridad, Mantenimiento y Reparaciones, Pruebas y Diagnóstico o Manual de Conducta y Operaciones Sectoriales]: 	");
-                    tipoDaOrientacao[i] = sc.nextLine();
+                    tipoDaOrientacao[i] = input.nextLine();
                     System.out.println("\nEscriba la descripción de la orientación: ");
-                    descricaoDaOrientacao[i] = sc.nextLine();
+                    descricaoDaOrientacao[i] = input.nextLine();
                     i++; // Incrementa el índice después de agregar
                     // ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
                     // 2 BUSCAR
@@ -984,7 +984,7 @@ public class Sistema_WegOne {
                         System.out.println("📂 Tipo de Orientación: " + tipo);
                     }
                     System.out.println("\n\nBusque el tipo de orientación: ");
-                    String nomeTipo = sc.nextLine();
+                    String nomeTipo = input.nextLine();
                     boolean encontrado = false;
                     for (int j = 0; j < i; j++) {
                         if (normalizar(nomeTipo).equals(normalizar(tipoDaOrientacao[j]))) {
@@ -1006,7 +1006,7 @@ public class Sistema_WegOne {
                         }
                     }
                     System.out.println("\n\nSeleccione un título de la orientación: ");
-                    String tituloSelecionado = sc.nextLine();
+                    String tituloSelecionado = input.nextLine();
                     boolean tituloEncontrado = false;
                     // Muestra el título, tipo y descripción del item seleccionado
                     for (int l = 0; l < i; l++) {
@@ -1039,7 +1039,7 @@ public class Sistema_WegOne {
                         System.out.println("📂 Tipo de Orientación: " + tipo);
                     }
                     System.out.println("\nEscriba el tipo de orientación que desea cambiar: ");
-                    atualizarOrientacao = sc.nextLine();
+                    atualizarOrientacao = input.nextLine();
                     String tipoAtualNormalizado = normalizar(atualizarOrientacao);
                     boolean tipoEncontrado = false;
                     // Buscar el tipo de orientación que será editado
@@ -1048,7 +1048,7 @@ public class Sistema_WegOne {
                             tipoEncontrado = true;
                             System.out.println("\n\nTipo de Orientación seleccionada: " + tipoDaOrientacao[h]
                                     + "\n\nNuevo Tipo: ");
-                            atualizarOrientacao = sc.nextLine();
+                            atualizarOrientacao = input.nextLine();
                             tipoDaOrientacao[h] = atualizarOrientacao;
                             break;
                         }
@@ -1066,7 +1066,7 @@ public class Sistema_WegOne {
                         System.out.println("📚 " + tituloDaOrientacao[p]);
                     }
                     System.out.println("\nEscriba el item que desea eliminar: ");
-                    produtoRemovido = sc.nextLine();
+                    produtoRemovido = input.nextLine();
                     String nomeProdutoNormalizado = normalizar(produtoRemovido);
                     boolean removido = false;
                     for (int k = 0; k < i; k++) {
@@ -1203,8 +1203,8 @@ public class Sistema_WegOne {
                 System.out.println("  6 - 🚪 Quitter");
                 System.out.println("════════════════════════════════════════");
                 System.out.print("Sélectionnez une option: ");
-                menu = sc.nextInt();
-                sc.nextLine();
+                menu = input.nextInt();
+                input.nextLine();
                 // ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
                 // 1 ENREGISTRER
                 if (menu == 1) {
@@ -1222,12 +1222,12 @@ public class Sistema_WegOne {
                         descricaoDaOrientacao = novaDescricao;
                     }
                     System.out.println("\n\nÉcrivez le titre de l'orientation: ");
-                    tituloDaOrientacao[i] = sc.nextLine();
+                    tituloDaOrientacao[i] = input.nextLine();
                     System.out.println(
                             "\nÉcrivez le Type d'orientation: [Manuel d'Opération, Procédure de Sécurité, Maintenance et Réparations, Tests et Diagnostic ou Manuel de Conduite et Opérations Sectorielles]: 	");
-                    tipoDaOrientacao[i] = sc.nextLine();
+                    tipoDaOrientacao[i] = input.nextLine();
                     System.out.println("\nÉcrivez la description de l'orientation: ");
-                    descricaoDaOrientacao[i] = sc.nextLine();
+                    descricaoDaOrientacao[i] = input.nextLine();
                     i++; // Incrémente l'index après l'ajout
                     // ══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
                     // 2 RECHERCHER
@@ -1243,7 +1243,7 @@ public class Sistema_WegOne {
                         System.out.println("📂 Type d'Orientation: " + tipo);
                     }
                     System.out.println("\n\nRecherchez le type d'orientation: ");
-                    String nomeTipo = sc.nextLine();
+                    String nomeTipo = input.nextLine();
                     boolean encontrado = false;
                     for (int j = 0; j < i; j++) {
                         if (normalizar(nomeTipo).equals(normalizar(tipoDaOrientacao[j]))) {
@@ -1265,7 +1265,7 @@ public class Sistema_WegOne {
                         }
                     }
                     System.out.println("\n\nSélectionnez un titre d'orientation: ");
-                    String tituloSelecionado = sc.nextLine();
+                    String tituloSelecionado = input.nextLine();
                     boolean tituloEncontrado = false;
                     // Affiche le titre, type et description de l'item sélectionné
                     for (int l = 0; l < i; l++) {
@@ -1298,7 +1298,7 @@ public class Sistema_WegOne {
                         System.out.println("📂 Type d'Orientation: " + tipo);
                     }
                     System.out.println("\nÉcrivez le type d'orientation que vous souhaitez changer: ");
-                    atualizarOrientacao = sc.nextLine();
+                    atualizarOrientacao = input.nextLine();
                     String tipoAtualNormalizado = normalizar(atualizarOrientacao);
                     boolean tipoEncontrado = false;
                     // Recherche le type d'orientation à modifier
@@ -1307,7 +1307,7 @@ public class Sistema_WegOne {
                             tipoEncontrado = true;
                             System.out.println("\n\nType d'Orientation sélectionné: " + tipoDaOrientacao[h]
                                     + "\n\nNouveau Type: ");
-                            atualizarOrientacao = sc.nextLine();
+                            atualizarOrientacao = input.nextLine();
                             tipoDaOrientacao[h] = atualizarOrientacao;
                             break;
                         }
@@ -1325,7 +1325,7 @@ public class Sistema_WegOne {
                         System.out.println("📚 " + tituloDaOrientacao[p]);
                     }
                     System.out.println("\nÉcrivez l'item que vous souhaitez supprimer: ");
-                    produtoRemovido = sc.nextLine();
+                    produtoRemovido = input.nextLine();
                     String nomeProdutoNormalizado = normalizar(produtoRemovido);
                     boolean removido = false;
                     for (int k = 0; k < i; k++) {
