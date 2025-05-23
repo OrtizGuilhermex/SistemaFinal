@@ -3,7 +3,7 @@ import java.text.Normalizer; // Esse é para normalizar o texto podendo ter ou n
 import java.util.HashSet; // Esse que é uma implementação concreta da interface Set.
 import java.util.Set; // Esse é a interface Set, que define a estrutura de dados para um conjunto de elementos únicos.
 
-public class Sistema_WegOne {
+public class Sistema {
 
     public static String normalizar(String texto) { // Função para normalizar texto
         return Normalizer.normalize(texto, Normalizer.Form.NFD)
